@@ -1,9 +1,9 @@
 <div class="container-fluid">
 
     <div class="search-container">
-        
+
         <div class="form-group">
-            <h2>Pesquisar</h2>
+            <label>Pesquisar</label>
             <div class="actions">
                 <input class="form-control" [formControl]="searchControl">
                 <button class="btn btn-dark" [disabled]="!searchControl.valid" (click)="doSearch()">Pesquisar</button>
@@ -20,10 +20,8 @@
     <app-loader *ngIf="loading$ | async"></app-loader>
 
     <div *ngIf="!(loading$ | async) && !(error$ | async) && !!cityWeather">
-        <app-current-weather 
-                [cityWeather]="cityWeather" 
-                [isFavorite]="isCurrentFavorite$ | async"
-                (toggleBookmark)="onToggleBookmark()">
+        <app-current-weather [cityWeather]="cityWeather" [isFavorite]="isCurrentFavorite$ | async"
+            (toggleBookmark)="onToggleBookmark()">
         </app-current-weather>
     </div>
 

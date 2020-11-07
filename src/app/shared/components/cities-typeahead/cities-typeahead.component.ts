@@ -18,11 +18,10 @@ export class CitiesTypeaheadComponent implements OnInit, ControlValueAccessor {
 
   dataSource$: Observable<CityTypeaheadItem[]>;
   search: string;
-
   private onChange: (value: CityTypeaheadItem) => void;
   private onTouched: () => void;
-
   disabled: boolean;
+  loading: boolean;
 
   constructor(
     private citiesService: CitiesService,

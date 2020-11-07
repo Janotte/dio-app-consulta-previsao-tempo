@@ -11,3 +11,4 @@ export const loadWeatherDetailsSuccess = createAction(
 );
 
 export const loadWeatherDetailsFailed = createAction('[Details] Load Weather Details Failed');
+

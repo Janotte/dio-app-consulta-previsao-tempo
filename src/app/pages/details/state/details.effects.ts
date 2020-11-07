@@ -8,8 +8,8 @@ import { mergeMap, map, catchError, withLatestFrom } from 'rxjs/operators';
 
 import * as fromDetailsActions from './details.actions';
 import * as fromRouterSelectors from '../../../shared/state/router/router.selectors';
-import { AppState } from './../../../shared/state/app.reducer';
-import { WeatherService } from './../../../shared/services/weather.service';
+import { AppState } from 'src/app/shared/state/app.reducer';
+import { WeatherService } from 'src/app/shared/services/weather.service';
 
 
 

@@ -11,13 +11,14 @@
   
 .search-container div {
     width: 100%;
-}
-
-.search-container .actions {
     display: flex;
 }
-  
+
 .search-container .form-control {
     margin-right: 8px;
     flex-grow: 1;
+}
+
+.form-group label {
+    margin-right: 8px;
 }

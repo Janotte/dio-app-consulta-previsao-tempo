@@ -1,7 +1,8 @@
 import { createReducer, Action, on } from '@ngrx/store';
 
 import * as fromDetailsActions from './details.actions';
-import { CityDailyWeather } from './../../../shared/models/weather.model';
+import { CityDailyWeather } from 'src/app/shared/models/weather.model';
+
 
 export interface DetailsState {
     entity: CityDailyWeather;

@@ -10,6 +10,7 @@ import * as fromHomeSelectors from '../../state/home.selectors';
 import * as fromBookmarksSelectors from '../../../bookmarks/state/bookmarks.selectors';
 import { Bookmark } from './../../../../shared/models/bookmark.model';
 import { CityWeather } from '../../../../shared/models/weather.model';
+import { CityTypeaheadItem } from 'src/app/shared/models/city-typeahead-item.model';
 
 @Component({
   selector: 'app-home',
@@ -35,8 +36,14 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.searchControl = new FormControl('', Validators.required);
     this.searchControlWithAutocomplete = new FormControl(undefined);
+
     this.searchControlWithAutocomplete.valueChanges
-      .subscribe(value => console.log(value));
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe((value: CityTypeaheadItem) => {
+        if (!!value) {
+          this.store.dispatch(fromHomeActions.loadCurrentWeatherById({ id: value.geonameid.toString() }));
+        }
+      });
 
     this.cityWeather$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeather));
     this.cityWeather$
@@ -61,6 +68,7 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.componentDestroyed$.next();
     this.componentDestroyed$.unsubscribe();
+    this.store.dispatch(fromHomeActions.clearHomeState());
   }
 
   doSearch(): void {
